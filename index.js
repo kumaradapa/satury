@@ -6,8 +6,8 @@ const path = require('path');
 const vendorRoutes = require('./routes/vendorRoutes');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
-
-const PORT = 4000;
+const path=require('path')
+const PORT = process.env.PORT || 4000;
 dotEnv.config();
 
 // ✅ MongoDB connection
@@ -25,9 +25,10 @@ app.use(express.json());
 app.use('/vendor', vendorRoutes);
 app.use('/firm', firmRoutes);
 app.use('/product', productRoutes);
+app.use('/uploads',express.static('uploads'));
 
 // ✅ Sample route
-app.use('/home', (req, res) => {
+app.use('/', (req, res) => {
   res.send("<h1>Welcome To SY</h1>");
 });
 
