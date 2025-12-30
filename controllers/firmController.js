@@ -1,19 +1,7 @@
 const path = require('path');
 const Firm = require('../models/Firm');
 const Vendor = require('../models/Vendor'); // Use proper naming for the model
-const multer = require('multer');
 
-// Multer setup for image uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Make sure this directory exists
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix);
-  }
-});
-const upload = multer({ storage: storage });
 
 // Add Firm controller
 const addFirm = async (req, res) => {
@@ -91,5 +79,6 @@ const deletefirmbyid=async(req,res)=>{
   }
 }
 module.exports = {
-  addFirm: [upload.single('image'), addFirm], deletefirmbyid
+   addFirm,
+  deletefirmbyid
 };

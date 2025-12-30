@@ -6,8 +6,11 @@ const path = require('path');
 const vendorRoutes = require('./routes/vendorRoutes');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
+const cors = require('cors');
+
 const PORT = process.env.PORT || 4000;
 dotEnv.config();
+app.use(cors());
 
 // ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
